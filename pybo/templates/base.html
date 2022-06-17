@@ -12,12 +12,15 @@
     </head>
     <body>
         {% include "navbar.html" %}
-        <!-- 기본 템플릿에 삽입할 내용 Start-->
+        <!-- 기본 템플릿에 삽입할 내용 Start -->
         {% block content %} {% endblock %}
-        <!-- 기본 템플릿에 삽입할 내용 End-->
-        <!-- jQuery JS-->
+        <!-- 기본 템플릿에 삽입할 내용 End -->
+        <!-- jQuery JS -->
         <script src="{{url_for('static', filename='jquery-3.6.0.min.js')}}"></script>
-        <!-- Boostrap JS-->
+        <!-- Boostrap JS -->
         <script src="{{url_for('static', filename='bootstrap.min.js')}}"></script>
+        <!-- JavaScript Start -->
+        {% block script %} {% endblock %}
+        <!-- JavaScript End -->
     </body>
 </html>
