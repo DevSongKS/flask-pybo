@@ -6,6 +6,8 @@ from pybo import db
 from pybo.forms import UserCreateForm, UserLoginForm
 from pybo.models import User
 
+import functools
+
 bp = Blueprint('auth', __name__, template_folder='/auth')
 
 
@@ -56,3 +58,12 @@ def load_logged_in_user():
 def logout():
     session.clear()
     return redirect(url_for('main.index'))
+
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('main.index'))
+        return view(**kwargs)
+    return wrapped_view
